@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
+    <!-- 字符编码 -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpack Work</title>
+    
+    <!-- 视口设置 - 响应式设计必备 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- 页面标题 -->
+    <title>Webpack + React 应用</title>
+    
+    <!-- SEO 相关 Meta 标签 -->
+    <meta name="description" content="基于 Webpack 5 和 React 19 构建的现代化前端应用">
+    <meta name="keywords" content="webpack, react, 前端开发, 应用">
+    <meta name="author" content="">
+    
+    <!-- 移动端优化 -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- 防止搜索引擎索引（开发环境，生产环境可删除） -->
+    <!-- <meta name="robots" content="noindex, nofollow"> -->
 </head>
 <body>
-    <div id="root"></div>
+    <!-- React 应用的挂载点 -->
+    <!-- webpack 会自动将打包后的 JS 和 CSS 注入到这里 -->
+    <div id="root">
+        <!-- 加载提示（可选） -->
+        <noscript>
+            <div style="text-align: center; padding: 50px; font-size: 18px;">
+                您需要启用 JavaScript 才能运行此应用。
+            </div>
+        </noscript>
+    </div>
 </body>
 </html>
