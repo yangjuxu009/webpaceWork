@@ -6,8 +6,10 @@
 
 - ✅ **Webpack 5** - 最新版本的模块打包工具
 - ✅ **React 19** - 最新版本的 React 框架
+- ✅ **TypeScript 支持** - 完整的 TypeScript 支持（.ts, .tsx）
+- ✅ **Sass/SCSS 支持** - 强大的 CSS 预处理器
+- ✅ **Less 支持** - 另一种流行的 CSS 预处理器
 - ✅ **Babel** - ES6+ 和 JSX 语法转换
-- ✅ **TypeScript 支持** - 可选的 TypeScript 支持
 - ✅ **热模块替换 (HMR)** - 开发时实时更新
 - ✅ **代码分割** - 自动优化打包体积
 - ✅ **路径别名** - 简化导入路径
@@ -101,7 +103,7 @@ npm run clean
 配置文件：`webpack.config.js`
 
 主要配置项：
-- **入口文件**: `src/index.jsx`
+- **入口文件**: `src/index` (支持 .tsx, .ts, .jsx, .js)
 - **输出目录**: `dist/`
 - **开发服务器**: `http://localhost:8080`
 - **路径别名**: 
@@ -109,12 +111,95 @@ npm run clean
   - `@components` → `src/components/`
   - `@utils` → `src/utils/`
   - `@assets` → `src/assets/`
+  - `@styles` → `src/styles/`
+
+### TypeScript 支持
+
+项目已完整配置 TypeScript 支持，可以直接使用 `.ts` 和 `.tsx` 文件。
+
+**使用示例：**
+```typescript
+// src/components/Button.tsx
+import React from 'react';
+
+interface ButtonProps {
+  label: string;
+  onClick: () => void;
+}
+
+const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
+  return <button onClick={onClick}>{label}</button>;
+};
+
+export default Button;
+```
+
+### Sass/SCSS 支持
+
+项目已配置 Sass/SCSS 支持，可以使用 `.sass` 和 `.scss` 文件。
+
+**使用示例：**
+```scss
+// src/components/Button.scss
+$primary-color: #667eea;
+
+.button {
+  background: $primary-color;
+  padding: 10px 20px;
+  
+  &:hover {
+    background: darken($primary-color, 10%);
+  }
+}
+```
+
+在组件中导入：
+```typescript
+import './Button.scss';
+```
+
+### Less 支持
+
+项目已配置 Less 支持，可以使用 `.less` 文件。
+
+**使用示例：**
+```less
+// src/components/Button.less
+@primary-color: #667eea;
+
+.button {
+  background: @primary-color;
+  padding: 10px 20px;
+  
+  &:hover {
+    background: darken(@primary-color, 10%);
+  }
+}
+```
+
+在组件中导入：
+```typescript
+import './Button.less';
+```
+
+### 样式文件选择
+
+你可以根据需要选择使用：
+- **CSS** - 标准样式文件
+- **Sass/SCSS** - 功能强大的预处理器（变量、嵌套、Mixin 等）
+- **Less** - 简洁的预处理器（变量、嵌套、函数等）
+
+在同一个项目中可以混用不同类型的样式文件。
 
 ### TypeScript 配置
 
-如果使用 TypeScript，配置文件：`tsconfig.json`
+配置文件：`tsconfig.json`
 
-项目已配置 TypeScript 支持，可以直接使用 `.ts` 和 `.tsx` 文件。
+项目已完整配置 TypeScript 支持，包括：
+- 路径别名映射（与 webpack 配置一致）
+- 严格类型检查
+- JSX 支持
+- Source Map 生成
 
 ### 路径别名使用示例
 
@@ -129,8 +214,10 @@ import logo from '@assets/logo.png';
 
 - **Webpack 5** - 模块打包工具
 - **React 19** - UI 框架
-- **Babel** - JavaScript 编译器
-- **TypeScript** - 类型系统（可选）
+- **TypeScript** - 类型系统
+- **Babel** - JavaScript/TypeScript 编译器
+- **Sass** - CSS 预处理器
+- **Less** - CSS 预处理器
 - **Lodash** - JavaScript 工具库
 
 ## 🌐 浏览器支持

@@ -5,12 +5,13 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 
-               'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', 
-               Helvetica, Arial, sans-serif, 'Apple Color Emoji', 
-               'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -128,21 +129,21 @@ button:active {
   .App {
     padding: 30px 15px;
   }
-  
+
   .App h1 {
     font-size: 2rem;
   }
-  
+
   .array-display,
   .counter {
     padding: 20px;
     margin: 20px 10px;
   }
-  
+
   .button-group {
     flex-direction: column;
   }
-  
+
   button {
     width: 100%;
   }

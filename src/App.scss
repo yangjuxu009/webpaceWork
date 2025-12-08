@@ -1,0 +1,115 @@
+// ==================== App 组件样式（Sass/SCSS 示例） ====================
+
+// 变量定义（Sass 变量）
+$primary-color: #667eea;
+$secondary-color: #764ba2;
+$text-color: #333;
+$bg-gradient: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+
+// 嵌套样式（Sass 特性）
+.app {
+  text-align: center;
+  margin: 0 auto;
+  padding: 50px 20px;
+  max-width: 1200px;
+  color: $text-color;
+  background: $bg-gradient;
+  min-height: 100vh;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+    // 响应式设计
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  // Mixin 使用示例（可以定义可复用的样式块）
+  .card {
+    background: #fff;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+
+    h2 {
+      color: $primary-color;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin: 15px 0;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    strong {
+      color: $secondary-color;
+      font-weight: 600;
+    }
+  }
+
+  .array-display {
+    @extend .card; // 继承样式
+
+    strong {
+      color: $secondary-color;
+    }
+  }
+
+  .counter {
+    @extend .card;
+
+    strong {
+      color: $secondary-color;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+
+  // 按钮组样式
+  .button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  // 按钮样式（使用函数和运算）
+  button {
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: $bg-gradient;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+}

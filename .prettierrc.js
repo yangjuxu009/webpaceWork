@@ -1,0 +1,63 @@
+/**
+ * Prettier 代码格式化配置
+ * 参考文档: https://prettier.io/docs/en/options.html
+ */
+module.exports = {
+  // 每行最大字符数（超过会自动换行）
+  printWidth: 100,
+
+  // 使用空格缩进（false 表示使用 Tab）
+  useTabs: false,
+
+  // 缩进空格数
+  tabWidth: 2,
+
+  // 语句末尾是否使用分号
+  semi: true,
+
+  // 是否使用单引号（false 表示使用双引号）
+  singleQuote: true,
+
+  // 对象属性的引号使用：仅在需要时使用引号
+  quoteProps: 'as-needed',
+
+  // JSX 中使用单引号还是双引号
+  jsxSingleQuote: false,
+
+  // 多行时尾随逗号
+  // "none" - 不使用尾随逗号
+  // "es5" - 在 ES5 有效的结构中（对象、数组等）使用
+  // "all" - 在所有可能的地方使用（需要 ES2017+）
+  trailingComma: 'es5',
+
+  // 对象字面量的大括号间是否有空格
+  bracketSpacing: true,
+
+  // JSX 标签的反尖括号需要换行
+  bracketSameLine: false,
+
+  // 箭头函数参数括号：always（总是有括号）或 avoid（尽可能避免）
+  arrowParens: 'always',
+
+  // 换行符类型
+  // "lf" - 仅换行（\n），Unix 和 macOS 常见
+  // "crlf" - 回车换行（\r\n），Windows 常见
+  // "cr" - 仅回车（\r），很少使用
+  // "auto" - 保持现有的行尾序列
+  endOfLine: 'lf',
+
+  // HTML 空白符敏感性
+  // "css" - 遵循 CSS display 属性的默认值
+  // "strict" - 空白符被视为敏感
+  // "ignore" - 空白符被视为不敏感
+  htmlWhitespaceSensitivity: 'css',
+
+  // Vue 文件中的 script 和 style 标签缩进
+  vueIndentScriptAndStyle: false,
+
+  // 文件内嵌格式化代码的开始位置
+  embeddedLanguageFormatting: 'auto',
+
+  // 单个属性换行时的缩进空格数
+  singleAttributePerLine: false,
+};

@@ -13,7 +13,9 @@ module.exports = (env, argv) => {
   return {
     // ==================== 入口配置 ====================
     // 指定应用的入口文件
-    entry: './src/index.jsx',
+    // 支持 .jsx、.js、.tsx、.ts 格式
+    // 优先级：.tsx > .ts > .jsx > .js
+    entry: './src/index',
     
     // ==================== 输出配置 ====================
     output: {
@@ -39,13 +41,15 @@ module.exports = (env, argv) => {
     // ==================== 模块解析配置 ====================
     resolve: {
       // 文件扩展名解析顺序（导入时可省略扩展名）
-      extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+      // 优先级：从左到右，先匹配到的扩展名优先
+      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
       // 路径别名配置（简化导入路径）
       alias: {
         '@': path.resolve(__dirname, 'src'),
         '@components': path.resolve(__dirname, 'src/components'),
         '@utils': path.resolve(__dirname, 'src/utils'),
         '@assets': path.resolve(__dirname, 'src/assets'),
+        '@styles': path.resolve(__dirname, 'src/styles'),
       },
       // 解析模块时查找的目录
       modules: ['node_modules', path.resolve(__dirname, 'src')],
@@ -87,14 +91,33 @@ module.exports = (env, argv) => {
           test: /\.(ts|tsx)$/,
           exclude: /node_modules/,
           use: [
-            'babel-loader',
+            // 使用 babel-loader 处理 TS（配合 @babel/preset-typescript）
             {
-              loader: 'ts-loader',
+              loader: 'babel-loader',
               options: {
-                // 启用 TypeScript 的类型检查
-                transpileOnly: false,
+                presets: [
+                  ['@babel/preset-env', {
+                    useBuiltIns: 'usage',
+                    corejs: 3,
+                  }],
+                  ['@babel/preset-react', {
+                    runtime: 'automatic',
+                  }],
+                  '@babel/preset-typescript', // TypeScript 预设
+                ],
+                cacheDirectory: true,
               },
             },
+            // 或者使用 ts-loader（提供更严格的类型检查）
+            // {
+            //   loader: 'ts-loader',
+            //   options: {
+            //     // transpileOnly: true 可以提升构建速度，但会跳过类型检查
+            //     transpileOnly: false,
+            //     // 使用 TypeScript 编译器配置
+            //     configFile: path.resolve(__dirname, 'tsconfig.json'),
+            //   },
+            // },
           ],
         },
         // 处理 CSS 文件
@@ -109,9 +132,90 @@ module.exports = (env, argv) => {
               loader: 'css-loader',
               options: {
                 // 启用 CSS Modules（可选）
+                // 设置为 true 或对象以启用 CSS Modules
                 modules: false,
                 // 在源文件中定位错误
                 sourceMap: !isProduction,
+              },
+            },
+          ],
+        },
+        // 处理 Sass/SCSS 文件
+        {
+          test: /\.(sass|scss)$/,
+          // 处理顺序：从右到左执行
+          // sass-loader: 将 Sass/SCSS 编译为 CSS
+          // css-loader: 解析 CSS 中的 @import 和 url()
+          // style-loader: 将 CSS 注入到 DOM 中
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                // 启用 CSS Modules（可选）
+                modules: false,
+                // 在源文件中定位错误
+                sourceMap: !isProduction,
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                // 启用 source map（开发环境）
+                sourceMap: !isProduction,
+                // Sass 选项配置
+                sassOptions: {
+                  // 输出格式：expanded（可读性好）或 compressed（压缩）
+                  outputStyle: isProduction ? 'compressed' : 'expanded',
+                  // 缩进宽度
+                  indentWidth: 2,
+                  // 导入路径（可以设置全局变量文件路径）
+                  // includePaths: [path.resolve(__dirname, 'src/styles')],
+                },
+                // 启用额外的 Sass 功能
+                // additionalData: `@import "@/styles/variables.scss";`,
+              },
+            },
+          ],
+        },
+        // 处理 Less 文件
+        {
+          test: /\.less$/,
+          // 处理顺序：从右到左执行
+          // less-loader: 将 Less 编译为 CSS
+          // css-loader: 解析 CSS 中的 @import 和 url()
+          // style-loader: 将 CSS 注入到 DOM 中
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                // 启用 CSS Modules（可选）
+                modules: false,
+                // 在源文件中定位错误
+                sourceMap: !isProduction,
+              },
+            },
+            {
+              loader: 'less-loader',
+              options: {
+                // 启用 source map（开发环境）
+                sourceMap: !isProduction,
+                // Less 选项配置
+                lessOptions: {
+                  // 启用 JavaScript（允许在 Less 中使用 JS 表达式）
+                  javascriptEnabled: true,
+                  // 压缩输出（生产环境）
+                  compress: isProduction,
+                  // 修改 Less 变量（可以覆盖默认变量）
+                  // modifyVars: {
+                  //   '@primary-color': '#1890ff',
+                  // },
+                  // 全局变量文件路径（会自动注入到每个 Less 文件）
+                  // globalVars: {
+                  //   '@primary-color': '#1890ff',
+                  // },
+                },
               },
             },
           ],
@@ -188,15 +292,19 @@ module.exports = (env, argv) => {
         index: '/index.html',
       },
       // 代理配置（解决跨域问题）
-      proxy: {
-        '/api': {
+      // webpack-dev-server 5.x 要求 proxy 是数组格式
+      proxy: [
+        {
+          context: ['/api'],
           target: 'http://localhost:3000',
           changeOrigin: true,
           pathRewrite: {
             '^/api': '',
           },
+          // 日志级别
+          logLevel: 'debug',
         },
-      },
+      ],
       // 显示编译错误和警告
       client: {
         overlay: {

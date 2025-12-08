@@ -1,0 +1,30 @@
+# ==================== ESLint 忽略文件配置 ====================
+# 这些文件和目录不会被 ESLint 检查
+
+# 依赖目录
+node_modules/
+.pnp
+.pnp.js
+
+# 构建输出目录
+dist/
+build/
+coverage/
+
+# 缓存目录
+.cache/
+.parcel-cache/
+.next/
+out/
+
+# 配置文件（如果需要检查可以删除）
+*.config.js
+webpack.config.js
+
+# 打包文件
+*.min.js
+*.min.css
+
+# 其他
+.DS_Store
+Thumbs.db

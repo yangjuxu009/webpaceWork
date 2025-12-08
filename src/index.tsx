@@ -4,14 +4,14 @@ import App from './App';
 import './index.css';
 
 /**
- * 应用入口文件
+ * 应用入口文件（TypeScript 版本）
  * 负责渲染根组件到 DOM
  */
 
 // 获取根 DOM 元素
 const rootElement = document.getElementById('root');
 
-// 检查根元素是否存在
+// 检查根元素是否存在（TypeScript 类型检查）
 if (!rootElement) {
   throw new Error('找不到 id 为 "root" 的 DOM 元素，请检查 index.html 文件');
 }
