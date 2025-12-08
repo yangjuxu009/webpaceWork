@@ -50,3 +50,4 @@ indent_size = 2
 # 配置文件
 [*.{json,yml,yaml,ini}]
 indent_size = 2
+

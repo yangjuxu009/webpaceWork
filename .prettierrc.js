@@ -61,3 +61,4 @@ module.exports = {
   // 单个属性换行时的缩进空格数
   singleAttributePerLine: false,
 };
+

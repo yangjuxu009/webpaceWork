@@ -38,6 +38,10 @@ function App() {
     setCount(0);
   };
 
+  const handleClick = () => {
+    console.log('点击了');
+  };
+
   return (
     <div className="App">
       {/* 主标题 */}
