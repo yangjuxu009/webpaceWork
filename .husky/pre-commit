@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+# 检查 NVM 脚本是否存在，如果存在，就加载它
+# 这会把正确的 node 和 npx 路径添加到 PATH 中
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# 在 commit 之前运行 lint-staged
+npx lint-staged
