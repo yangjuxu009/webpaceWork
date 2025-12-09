@@ -11,9 +11,10 @@
     // "outDir": "./dist",
 
     // ==================== 环境设置 ====================
-    // 模块系统：使用 Node.js 最新的模块解析方式
+    // 模块系统：使用 ES 模块
     // 可选值: "commonjs", "esnext", "nodenext", "es2015" 等
-    "module": "nodenext",
+    // 注意：使用 "esnext" 与 webpack 更兼容
+    "module": "esnext",
 
     // 编译目标：编译为 ES 最新版本
     // 可选值: "es5", "es2015", "es2020", "esnext" 等
@@ -22,9 +23,8 @@
     // 类型声明文件列表（空数组表示不包含任何类型）
     "types": [],
 
-    // 库文件列表（如果需要 Node.js 类型，取消注释并安装 @types/node）
-    // "lib": ["esnext", "dom"],
-    // "types": ["node"],
+    // 库文件列表（包含 ES 和 DOM API）
+    "lib": ["esnext", "dom", "dom.iterable"],
 
     // ==================== 输出配置 ====================
     // 生成 source map 文件（便于调试）
@@ -87,8 +87,8 @@
     "skipLibCheck": true,
 
     // ==================== 模块解析配置 ====================
-    // 模块解析策略：使用 Node.js 模块解析
-    "moduleResolution": "node",
+    // 模块解析策略：使用 bundler 模式（适用于 webpack、vite 等打包工具）
+    "moduleResolution": "bundler",
 
     // 允许导入 JSON 文件
     "resolveJsonModule": true,
@@ -108,7 +108,10 @@
       "@utils/*": ["src/utils/*"],
       "@assets/*": ["src/assets/*"],
       "@styles/*": ["src/styles/*"]
-    }
+    },
+
+    // 允许不写文件扩展名
+    "allowImportingTsExtensions": false
   },
 
   // ==================== 包含/排除文件 ====================

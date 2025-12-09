@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 // import App from './App'; // 暂时未使用，已注释
-import { TestComponent } from '@/TestComponent';
+import { TestComponent } from './TestComponent';
 import './index.css';
 
 /**
