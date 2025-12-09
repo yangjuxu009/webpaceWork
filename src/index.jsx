@@ -28,6 +28,7 @@ const root = ReactDOM.createRoot(rootElement);
 // 4. 检测过时的 Context API
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    <TestComponent />
   </React.StrictMode>
 );

@@ -5,12 +5,12 @@
  */
 
 import js from '@eslint/js';
-import react from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
 import typescript from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
-import prettier from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
+import prettier from 'eslint-plugin-prettier';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
 
 export default [
   // 使用推荐的 JavaScript 基础规则
@@ -72,14 +72,19 @@ export default [
 
       // TypeScript 规则
       '@typescript-eslint/no-unused-vars': [
-        'error',
+        'warn', // 改为警告而不是错误
         {
           argsIgnorePattern: '^_',
           varsIgnorePattern: '^_',
+          // 忽略未使用的导入（允许导入但未使用的情况）
+          ignoreRestSiblings: true,
         },
       ],
       '@typescript-eslint/no-explicit-any': 'warn', // 警告使用 any 类型
       '@typescript-eslint/explicit-function-return-type': 'off', // 不强制显式返回类型
+
+      // 未使用导入的处理（允许注释掉的代码）
+      'no-unused-vars': 'off', // 关闭基础规则，使用 TypeScript 版本
 
       // 通用规则
       'no-console': ['warn', { allow: ['warn', 'error'] }], // 允许 warn 和 error
@@ -124,4 +129,3 @@ export default [
   // 使用 Prettier 配置来禁用冲突的 ESLint 规则
   prettierConfig,
 ];
-

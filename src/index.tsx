@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+// import App from './App'; // 暂时未使用，已注释
+import { TestComponent } from '@/TestComponent';
 import './index.css';
 
 /**
@@ -28,7 +29,7 @@ const root = ReactDOM.createRoot(rootElement);
 // 4. 检测过时的 Context API
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    <TestComponent />
   </React.StrictMode>
 );
-

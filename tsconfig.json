@@ -1,104 +1,104 @@
 {
   // TypeScript 配置文件
   // 参考文档: https://aka.ms/tsconfig
-  
+
   "compilerOptions": {
     // ==================== 文件布局配置 ====================
     // 源代码根目录（如果启用，则只编译该目录下的文件）
     // "rootDir": "./src",
-    
+
     // 输出目录（编译后的文件输出位置）
     // "outDir": "./dist",
-    
+
     // ==================== 环境设置 ====================
     // 模块系统：使用 Node.js 最新的模块解析方式
     // 可选值: "commonjs", "esnext", "nodenext", "es2015" 等
     "module": "nodenext",
-    
+
     // 编译目标：编译为 ES 最新版本
     // 可选值: "es5", "es2015", "es2020", "esnext" 等
     "target": "esnext",
-    
+
     // 类型声明文件列表（空数组表示不包含任何类型）
     "types": [],
-    
+
     // 库文件列表（如果需要 Node.js 类型，取消注释并安装 @types/node）
     // "lib": ["esnext", "dom"],
     // "types": ["node"],
-    
+
     // ==================== 输出配置 ====================
     // 生成 source map 文件（便于调试）
     "sourceMap": true,
-    
+
     // 生成声明文件（.d.ts）
     "declaration": true,
-    
+
     // 为声明文件生成 source map
     "declarationMap": true,
-    
+
     // ==================== 严格类型检查选项 ====================
     // 禁止未检查的索引访问（索引访问可能返回 undefined）
     "noUncheckedIndexedAccess": true,
-    
+
     // 精确的可选属性类型（区分 undefined 和缺失的属性）
     "exactOptionalPropertyTypes": true,
-    
+
     // ==================== 代码风格选项 ====================
     // 所有代码路径都必须返回值（取消注释以启用）
     // "noImplicitReturns": true,
-    
+
     // 重写方法必须使用 override 关键字（取消注释以启用）
     // "noImplicitOverride": true,
-    
+
     // 禁止未使用的局部变量（取消注释以启用）
     // "noUnusedLocals": true,
-    
+
     // 禁止未使用的参数（取消注释以启用）
     // "noUnusedParameters": true,
-    
+
     // Switch 语句必须有 default case（取消注释以启用）
     // "noFallthroughCasesInSwitch": true,
-    
+
     // 禁止通过索引访问对象属性（取消注释以启用）
     // "noPropertyAccessFromIndexSignature": true,
-    
+
     // ==================== 推荐配置 ====================
     // 启用所有严格类型检查
     // 包括: strictNullChecks, strictFunctionTypes, strictBindCallApply 等
     "strict": true,
-    
+
     // JSX 编译模式：使用新的 JSX 转换（React 17+）
     // 可选值: "react", "react-jsx", "react-jsxdev", "preserve"
     "jsx": "react-jsx",
-    
+
     // 保持模块语法的原始形式（不转换 import/export）
     "verbatimModuleSyntax": true,
-    
+
     // 确保每个文件都可以独立编译（用于增量编译）
     "isolatedModules": true,
-    
+
     // 禁止未检查的副作用导入
     "noUncheckedSideEffectImports": true,
-    
+
     // 强制检测所有文件为模块
     "moduleDetection": "force",
-    
+
     // 跳过类型声明文件的类型检查（提升编译速度）
     "skipLibCheck": true,
-    
+
     // ==================== 模块解析配置 ====================
     // 模块解析策略：使用 Node.js 模块解析
     "moduleResolution": "node",
-    
+
     // 允许导入 JSON 文件
     "resolveJsonModule": true,
-    
+
     // 允许在模块中使用 import/export
     "esModuleInterop": true,
-    
+
     // 允许使用默认导入（兼容 CommonJS）
     "allowSyntheticDefaultImports": true,
-    
+
     // ==================== 路径映射配置 ====================
     // 路径别名（与 webpack.config.js 中的 alias 保持一致）
     "baseUrl": ".",
@@ -110,13 +110,13 @@
       "@styles/*": ["src/styles/*"]
     }
   },
-  
+
   // ==================== 包含/排除文件 ====================
   // 要编译的文件或目录
   "include": [
     "src/**/*"
   ],
-  
+
   // 要排除的文件或目录
   "exclude": [
     "node_modules",
