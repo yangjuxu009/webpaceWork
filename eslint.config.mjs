@@ -72,12 +72,14 @@ export default [
 
       // TypeScript 规则
       '@typescript-eslint/no-unused-vars': [
-        'warn', // 改为警告而不是错误
+        'error', // 改为错误，显示红色波浪线
         {
           argsIgnorePattern: '^_',
           varsIgnorePattern: '^_',
-          // 忽略未使用的导入（允许导入但未使用的情况）
-          ignoreRestSiblings: true,
+          // 不忽略未使用的导入和方法
+          ignoreRestSiblings: false,
+          // 检测未使用的导入
+          caughtErrors: 'none',
         },
       ],
       '@typescript-eslint/no-explicit-any': 'warn', // 警告使用 any 类型
